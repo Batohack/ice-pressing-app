@@ -5,7 +5,6 @@ Professional and BILINGUAL
 **Yaoundé, Cameroon** | **React + Node.js + SQLite**
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-blue)](http://your-vercel-url.vercel.app)
-[![PDF Report](https://img.shields.io/badge/Download-PDF-red)](https://github.com/batohack/ice-pressing/releases/download/v1.0/Ice_Pressing_Final_Report.pdf)
 
 ---
 
@@ -34,6 +33,10 @@ Professional and BILINGUAL
 
 ## Setup
 
+SCREENSHOTS
+![alt text](image.png) "DASHBOARD"
+
+
 ```bash
 # Backend
 cd backend && npm install && node server.js
@@ -43,7 +46,8 @@ cd frontend && npm install && npm start
 
 Login: admin / password123
 
-SCREENSHOTS
+
+
 
 
 

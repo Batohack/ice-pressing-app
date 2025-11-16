@@ -10,6 +10,7 @@ import OrderForm from './components/OrderForm';
 import InventoryList from './components/InventoryList';
 import InventoryForm from './components/InventoryForm';
 import PaymentList from './components/PaymentList';
+import PaymentForm from './components/PaymentForm';  // ADD THIS
 import Reports from './components/reports';
 
 function PrivateRoute({ children }) {
@@ -32,9 +33,8 @@ export default function App() {
       <Route path="/inventory/new" element={<PrivateRoute><InventoryForm /></PrivateRoute>} />
       <Route path="/inventory/:id" element={<PrivateRoute><InventoryForm /></PrivateRoute>} />
       <Route path="/payments" element={<PrivateRoute><PaymentList /></PrivateRoute>} />
+      <Route path="/payments/new" element={<PrivateRoute><PaymentForm /></PrivateRoute>} /> {/* ADD THIS */}
       <Route path="/reports" element={<PrivateRoute><Reports /></PrivateRoute>} />
-
-      <Route path="/payments/new" element={<PrivateRoute><PaymentForm /></PrivateRoute>} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

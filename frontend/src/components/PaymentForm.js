@@ -1,4 +1,4 @@
-cat > src/components/PaymentForm.js <<'EOF'
+// src/components/PaymentForm.js
 import React, { useState, useEffect } from 'react';
 import {
   TextField, Button, Container, Box, Typography, Paper, MenuItem, Alert
@@ -17,7 +17,7 @@ export default function PaymentForm() {
     api.get('/orders').then(res => {
       const unpaid = res.data.filter(o => o.status !== 'Paid');
       setOrders(unpaid);
-    });
+    }).catch(() => setError('Failed to load orders'));
   }, []);
 
   const handleChange = (e) => {
@@ -33,7 +33,7 @@ export default function PaymentForm() {
 
     try {
       await api.post('/payments', {
-        order_id: form.order_id,
+        order_id: parseInt(form.order_id),
         amount: parseInt(form.amount),
         method: form.method
       });
@@ -50,7 +50,7 @@ export default function PaymentForm() {
         <Paper elevation={3} sx={{ p: 4, borderRadius: 3 }}>
           <Typography variant="h5" sx={{ mb: 3, fontWeight: 600, color: '#1a3e72' }}>
             Record Payment
-          </Typography>
+         ичего          </Typography>
 
           {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
 
@@ -58,16 +58,21 @@ export default function PaymentForm() {
             select label="Order" name="order_id" value={form.order_id}
             onChange={handleChange} fullWidth required sx={{ mb: 2 }}
           >
-            {orders.map(o => (
-              <MenuItem key={o.id} value={o.id}>
-                #{o.id} – {o.customer_name} ({o.total_cost} FCFA)
-              </MenuItem>
-            ))}
+            {orders.length === 0 ? (
+              <MenuItem disabled>No unpaid orders</MenuItem>
+            ) : (
+              orders.map(o => (
+                <MenuItem key={o.id} value={o.id}>
+                  #{o.id} – {o.customer_name} ({o.total_cost} FCFA)
+                </MenuItem>
+              ))
+            )}
           </TextField>
 
           <TextField
             label="Amount (FCFA)" name="amount" type="number"
             value={form.amount} onChange={handleChange} fullWidth required sx={{ mb: 2 }}
+            inputProps={{ min: 1 }}
           />
 
           <TextField
@@ -87,4 +92,3 @@ export default function PaymentForm() {
     </Box>
   );
 }
-EOF
