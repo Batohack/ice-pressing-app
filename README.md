@@ -52,4 +52,9 @@ Login: admin / password123
 
 
 
+Team
+
+Batohack – Lead Developer (English + Full Stack)
+French Team – Testing & Feedback
+
 
